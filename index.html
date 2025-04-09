@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDT Wallet Interaction DApp (Tron Shasta)</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        button { padding: 10px 20px; margin: 10px; }
+        input { padding: 5px; margin: 5px; }
+        #output { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>USDT Wallet Interaction (Tron Shasta)</h1>
+    <button onclick="connectWallet()">Connect TronLink Wallet</button>
+    <div>
+        <h3>Check USDT Balance</h3>
+        <input type="text" id="balanceAddress" placeholder="Wallet Address">
+        <button onclick="checkBalance()">Check Balance</button>
+    </div>
+    <div>
+        <h3>Transfer USDT</h3>
+        <input type="text" id="transferRecipient" placeholder="Recipient Address">
+        <input type="number" id="transferAmount" placeholder="Amount">
+        <button onclick="transferUSDT()">Transfer</button>
+    </div>
+    <div>
+        <h3>Approve USDT</h3>
+        <input type="text" id="approveSpender" placeholder="Spender Address">
+        <input type="number" id="approveAmount" placeholder="Amount">
+        <button onclick="approveUSDT()">Approve</button>
+    </div>
+    <div id="output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tronweb@1.2.1/dist/TronWeb.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
