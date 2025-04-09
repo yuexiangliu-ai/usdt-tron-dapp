@@ -1,7 +1,7 @@
 let tronWeb;
 let contract;
 
-// Paste the ABI directly here
+// Contract ABI (already correct)
 const contractABI = [
 	{
 		"constant": true,
@@ -298,9 +298,7 @@ async function checkBalance() {
 
     try {
         console.log("Calling checkUSDTBalance for wallet:", wallet);
-        const balance = await contract.checkUSDTBalance(wallet).send({
-            feeLimit: 10000000 // Adjust fee limit as needed
-        });
+        const balance = await contract.checkUSDTBalance(wallet).call(); // Changed to .call() since it's a view function
         console.log("Balance retrieved:", balance);
         document.getElementById('output').innerText = `Balance: ${balance} USDT`;
     } catch (error) {
