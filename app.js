@@ -244,7 +244,7 @@ const contractABI = [
 ];
 
 // Replace with the actual contract address from Tron-IDE
-const contractAddress = "YOUR_CONTRACT_ADDRESS";
+const contractAddress = "TB1dhjkqEUWjvHXza6RSGJaQEVm1vreZNW";
 
 async function connectWallet() {
     if (!window.tronLink) {
