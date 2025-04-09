@@ -243,12 +243,17 @@ const contractABI = [
     }
 ];
 
-// Replace with the actual contract address from Tron-IDE
-const contractAddress = "TB1dhjkqEUWjvHXza6RSGJaQEVm1vreZNW";
-
 async function connectWallet() {
     if (!window.tronLink) {
         document.getElementById('output').innerText = "Please install TronLink!";
+        return;
+    }
+
+    // Get the contract address from the input field
+    const contractAddress = document.getElementById('contractAddress').value;
+    if (!contractAddress) {
+        document.getElementById('output').innerText = "Please enter a contract address!";
+        console.error("Contract address is empty.");
         return;
     }
 
@@ -280,7 +285,7 @@ async function connectWallet() {
         document.getElementById('output').innerText = `Connected: ${accounts}`;
         console.log("Connected account:", accounts);
 
-        // Initialize the contract
+        // Initialize the contract with the user-provided address
         contract = await tronWeb.contract(contractABI, contractAddress);
         if (!contract) {
             document.getElementById('output').innerText = "Failed to initialize contract. Please check the contract address and ABI.";
@@ -310,7 +315,9 @@ async function checkBalance() {
 
     try {
         console.log("Calling checkUSDTBalance for wallet:", wallet);
-        const balance = await contract.checkUSDTBalance(wallet).call();
+        const balance = await contract.checkUSDTBalance(wallet).send({
+            feeLimit: 10000000 // Adjust fee limit as needed
+        });
         console.log("Balance retrieved:", balance);
         document.getElementById('output').innerText = `Balance: ${balance} USDT`;
     } catch (error) {
